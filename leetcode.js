@@ -1,16 +1,23 @@
-candles = [4, 4, 1, 3, 4];
+// Extrai o sufixo AM ou PM
+const period = s.slice(-2);
 
-let max = 0;
-let count = 0;
+// Extrai horas, minutos e segundos
+let [hour, minutes, seconds] = s.slice(0, -2).split(":");
 
-for (let c of candles) {
-  if (c > max) {
-    max = c; // novo maior valor
-    count = 1; // reinicia a contagem
-  } else if (c === max) {
-    count++; // encontrou outro igual ao maior
-  }
+// Converte para número para facilitar operações
+hour = parseInt(hour);
+
+if (period === "AM") {
+  // Caso especial: 12 AM vira 00
+  if (hour === 12) hour = 0;
+} else {
+  // Se for PM e não for 12 PM, soma 12
+  if (hour !== 12) hour += 12;
 }
-console.log(count);
 
-//O(n)
+// Formatar com dois dígitos
+hour = String(hour).padStart(2, "0");
+
+console.log(`${hour}:${min}:${sec}`);
+
+//O(1)

@@ -1,23 +1,18 @@
-// Extrai o sufixo AM ou PM
-const period = s.slice(-2);
+const arr = [1, 1, 3, 2, 1];
+// O problema diz que os valores vão de 0 a 99
+const freq = new Array(100).fill(0);
 
-// Extrai horas, minutos e segundos
-let [hour, minutes, seconds] = s.slice(0, -2).split(":");
-
-// Converte para número para facilitar operações
-hour = parseInt(hour);
-
-if (period === "AM") {
-  // Caso especial: 12 AM vira 00
-  if (hour === 12) hour = 0;
-} else {
-  // Se for PM e não for 12 PM, soma 12
-  if (hour !== 12) hour += 12;
+// Conta quantas vezes cada valor aparece
+for (let num of arr) {
+  freq[num]++;
 }
 
-// Formatar com dois dígitos
-hour = String(hour).padStart(2, "0");
+console.log(freq);
 
-console.log(`${hour}:${min}:${sec}`);
+//Tempo: O(n)
+//Percorremos o array apenas uma vez.
 
-//O(1)
+//Espaço: O(1)
+
+//O array de frequência sempre tem tamanho fixo (100 posições).
+//Mesmo que o input cresça, o espaço não cresce.
